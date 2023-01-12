@@ -5,7 +5,7 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class Image_New extends Model
 {
     use HasFactory;
     protected $table='imgae_galleries';
