@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ImageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,3 +22,7 @@ Route::get('/employee/pdf', [EmployeeController::class, 'createPDF']);
 Route::get('file-import-export', [EmployeeController::class, 'fileImportExport']);
 Route::post('file-import', [EmployeeController::class, 'fileImport'])->name('file-import');
 Route::get('file-export', [EmployeeController::class, 'fileExport'])->name('file-export');
+
+
+Route::get('/testing', [ImageController::class, 'index'])->name('testing');
+Route::post('/savetest', [ImageController::class, 'create'])->name('savetest');
