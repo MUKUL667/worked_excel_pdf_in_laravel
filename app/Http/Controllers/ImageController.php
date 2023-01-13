@@ -88,4 +88,12 @@ class ImageController extends Controller
 
            return back();
   }
+   public function dynamic()
+   {
+
+
+        $data['option']=Image_New::select('original_image')->get();
+        return response()->json($data);
+
+   }
 }

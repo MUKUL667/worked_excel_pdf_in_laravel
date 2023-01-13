@@ -26,3 +26,4 @@ Route::get('file-export', [EmployeeController::class, 'fileExport'])->name('file
 
 Route::get('/testing', [ImageController::class, 'index'])->name('testing');
 Route::post('/savetest', [ImageController::class, 'create'])->name('savetest');
+Route::get('/dynamic_content', [ImageController::class, 'dynamic'])->name('dynamic_contact');
