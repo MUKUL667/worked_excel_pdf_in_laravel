@@ -9,7 +9,7 @@ use App\Http\Controllers\ImageController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
+| routes are loaded by the RouteServiceProvider within a group whichssss
 | contains the "web" middleware group. Now create something great!
 |
 */
@@ -26,4 +26,5 @@ Route::get('file-export', [EmployeeController::class, 'fileExport'])->name('file
 
 Route::get('/testing', [ImageController::class, 'index'])->name('testing');
 Route::post('/savetest', [ImageController::class, 'create'])->name('savetest');
-Route::get('/dynamic_content', [ImageController::class, 'dynamic'])->name('dynamic_contact');
+Route::get('/dynamiccontent', [ImageController::class, 'dynamic'])->name('dynamiccontent');
+Route::get('/test', [ImageController::class, '_index'])->name('images');
