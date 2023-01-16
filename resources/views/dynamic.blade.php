@@ -10,7 +10,7 @@
 <body>
 <div class="content">
     <div class="container">
-<div id="test" class="d-flex justify-content-center align-item-center ">
+<div id="test" class="d-flex justify-content-center align-item-center flex-wrap ">
 
 </div>
     </div>
