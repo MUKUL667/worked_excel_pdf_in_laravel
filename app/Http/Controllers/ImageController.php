@@ -46,7 +46,7 @@ class ImageController extends Controller
         if($width<1200)
         {
 
-            $org_1 = Str::random(8).'.'.'480'.'.'.'webp';
+            $org_1 = Str::random(8).'_'.'480'.'.'.'webp';
             $image_resize = Image::make(public_path('images').'/'.$data->original_image);
             $image_resize->resize(480, null, function ($constraint) {
                 $constraint->aspectRatio();
@@ -59,7 +59,7 @@ class ImageController extends Controller
         if($width>1200 && $width<=1920)
         {
 
-                $org_1 = Str::random(8).'.'.'480'.'.'.'webp';
+                $org_1 = Str::random(8).'_'.'480'.'.'.'webp';
                 $image_resize = Image::make(public_path('images').'/'.$data->original_image);
                 $image_resize->resize(480, null, function ($constraint) {
                     $constraint->aspectRatio();
@@ -68,7 +68,7 @@ class ImageController extends Controller
                 $data['image_'.'4']=$org_1;
 
 
-                $org_1 = Str::random(8).'.'.'1200'.'.'.'webp';
+                $org_1 = Str::random(8).'_'.'1200'.'.'.'webp';
                 $image_resize = Image::make(public_path('images').'/'.$data->original_image);
                 $image_resize->resize(1200, null, function ($constraint) {
                     $constraint->aspectRatio();
@@ -81,7 +81,7 @@ class ImageController extends Controller
         if($width>1920)
         {
 
-                    $org_1 = Str::random(8).'.'.'480'.'.'.'webp';
+                    $org_1 = Str::random(8).'_'.'480'.'.'.'webp';
                     $image_resize = Image::make(public_path('images').'/'.$data->original_image);
                     $image_resize->resize(480, null, function ($constraint) {
                         $constraint->aspectRatio();
@@ -90,7 +90,7 @@ class ImageController extends Controller
                     $data['image_'.'4']=$org_1;
 
 
-                    $org_1 = Str::random(8).'.'.'1200'.'.'.'webp';
+                    $org_1 = Str::random(8).'_'.'1200'.'.'.'webp';
                     $image_resize = Image::make(public_path('images').'/'.$data->original_image);
                     $image_resize->resize(1200, null, function ($constraint) {
                         $constraint->aspectRatio();
@@ -99,7 +99,7 @@ class ImageController extends Controller
                     $data['image_'.'5']=$org_1;
 
 
-                $org_1 = Str::random(8).'.'.'1920'.'.'.'webp';
+                $org_1 = Str::random(8).'_'.'1920'.'.'.'webp';
                 $image_resize = Image::make(public_path('images').'/'.$data->original_image);
                 $image_resize->resize(1920, null, function ($constraint) {
                     $constraint->aspectRatio();
@@ -110,13 +110,13 @@ class ImageController extends Controller
         }
     }
 
-// ##################jpeg############
+// ##################jpg############
 for($i=1;$i<2;$i++)
 {
     if($width<1200)
     {
 
-        $org_1 = Str::random(8).'.'.'480'.'.'.'jpeg';
+        $org_1 = Str::random(8).'_'.'480'.'.'.'jpg';
         $image_resize = Image::make(public_path('images').'/'.$data->original_image);
         $image_resize->resize(480, null, function ($constraint) {
             $constraint->aspectRatio();
@@ -130,7 +130,7 @@ for($i=1;$i<2;$i++)
     if($width>1200 && $width<=1920)
     {
 
-            $org_1 = Str::random(8).'.'.'480'.'.'.'jpeg';
+            $org_1 = Str::random(8).'_'.'480'.'.'.'jpg';
             $image_resize = Image::make(public_path('images').'/'.$data->original_image);
             $image_resize->resize(480, null, function ($constraint) {
                 $constraint->aspectRatio();
@@ -140,7 +140,7 @@ for($i=1;$i<2;$i++)
 
 
 
-            $org_1 = Str::random(8).'.'.'1200'.'.'.'jpeg';
+            $org_1 = Str::random(8).'_'.'1200'.'.'.'jpg';
             $image_resize = Image::make(public_path('images').'/'.$data->original_image);
             $image_resize->resize(1200, null, function ($constraint) {
                 $constraint->aspectRatio();
@@ -154,7 +154,7 @@ for($i=1;$i<2;$i++)
     if($width>1920)
     {
 
-            $org_1 = Str::random(8).'.'.'480'.'.'.'jpeg';
+            $org_1 = Str::random(8).'_'.'480'.'.'.'jpg';
             $image_resize = Image::make(public_path('images').'/'.$data->original_image);
             $image_resize->resize(480, null, function ($constraint) {
                 $constraint->aspectRatio();
@@ -164,7 +164,7 @@ for($i=1;$i<2;$i++)
 
 
 
-            $org_1 = Str::random(8).'.'.'1200'.'.'.'jpeg';
+            $org_1 = Str::random(8).'_'.'1200'.'.'.'jpg';
             $image_resize = Image::make(public_path('images').'/'.$data->original_image);
             $image_resize->resize(1200, null, function ($constraint) {
                 $constraint->aspectRatio();
@@ -173,7 +173,7 @@ for($i=1;$i<2;$i++)
             $data['image_'.'2']=$org_1;
 
 
-            $org_1 = Str::random(8).'.'.'1920'.'.'.'jpeg';
+            $org_1 = Str::random(8).'_'.'1920'.'.'.'jpg';
             $image_resize = Image::make(public_path('images').'/'.$data->original_image);
             $image_resize->resize(1920, null, function ($constraint) {
                 $constraint->aspectRatio();
@@ -195,19 +195,34 @@ for($i=1;$i<2;$i++)
    public function dynamic(Request $request)
    {
 
-        if($request->support)
+        if($request->support=="safari")
+        {
+            $data['support']='jpg';
+            $data['option']=Image_New::select('image_1')->get();
+            return response()->json($data);
+        }
+        else
         {
             $data['option']=Image_New::select('image_4')->get();
             $data['support']='webp';
             return response()->json($data);
         }
-        else
-        {
-            $data['support']='jpeg';
-            $data['option']=Image_New::select('image_1')->get();
-            return response()->json($data);
-        }
 
 
+   }
+
+
+   public function view()
+   {
+    $data=Image_New::select('original_image','id')->get();
+    return view('table',compact('data'));
+   }
+   public function destroy(Request $request,$id)
+   {
+       $i = Image_New::findOrFail($id);
+
+        $i->delete();
+
+       return redirect('/test');
    }
 }

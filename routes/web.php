@@ -28,3 +28,5 @@ Route::get('/testing', [ImageController::class, 'index'])->name('testing');
 Route::post('/savetest', [ImageController::class, 'create'])->name('savetest');
 Route::get('/dynamiccontent', [ImageController::class, 'dynamic'])->name('dynamiccontent');
 Route::get('/test', [ImageController::class, '_index'])->name('images');
+Route::get('/deletetest/{id}', [ImageController::class, 'destroy'])->name('delete');
+Route::get('/viewimage', [ImageController::class, 'view'])->name('viewimage');

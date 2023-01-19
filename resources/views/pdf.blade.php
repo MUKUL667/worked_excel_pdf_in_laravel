@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<head>
+    <meta name="robots" content="noindex, nofollow">
+</head>
 <body>
 
     <div class="container mt-5">
