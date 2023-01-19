@@ -21,66 +21,20 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{{ asset('js/modernizr-custom.js') }}"></script>
+<script src="{{ asset('js/modernizr-custom.js') }}"></script>
 <script>
-    let usergaent=navigator.userAgent.toLowerCase();
-    let browser;
-    if(usergaent.search('safari') > -1 && !! window.safari ==true)
+  Modernizr.on('webp', function (result) {
+    if(result)
     {
-        browser="safari";
+      console.log("webp support")
     }
-    else
-    {
-        browser="other";
+    else{
+      console.log("webp not support")
     }
-
-
-        const domain='https://assets.techtonic.asia';
-        $( document ).ready(function() {
-                $.ajax({
-                    type: "get",
-                    dataType: "json",
-                    url: "dynamiccontent",
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        'support': browser,
-                    },
-                    success: function(result) {
-
-
-                                      $.each(result.option, function(key, value) {
-
-                                        if(result.support=='jpg')
-                                        {
-
-                                                $.each(result.option, function(key, value) {
-                                                    $("#test").append( '<div class="bhreveimg mx-2 my-2"><img class="" src="'+domain+'/images/' +
-                                                            value.image_1 +
-                                                            '"  alt="'+domain+'/images/' +
-                                                            value.image_1 +
-                                                            '"> </div>  </div>'
-                                                    );
-                                                })
-
-                                        }
-                                        if(result.support=='webp')
-                                        {
-
-                                                $.each(result.option, function(key, value) {
-                                                    $("#test").append( '<div class="bhreveimg mx-2 my-2"><img class="" src="'+domain+'/images/' +
-                                                            value.image_4 +
-                                                            '"  alt="'+domain+'/images/' +
-                                                            value.image_4 +
-                                                            '"> </div>  </div>'
-                                                    );
-                                                })
-
-                                        }
-                                })
-
-                    }
-                });
-            });
+  })
 </script>
+
 
 
 </html>

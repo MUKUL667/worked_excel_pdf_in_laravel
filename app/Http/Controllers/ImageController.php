@@ -195,18 +195,22 @@ for($i=1;$i<2;$i++)
    public function dynamic(Request $request)
    {
 
-        if($request->support=="safari")
-        {
-            $data['support']='jpg';
+
+            $data['option']=Image_New::select('image_4')->get();
+            return response()->json($data);
+
+
+
+
+   }
+   public function _dynamic(Request $request)
+   {
+
+
             $data['option']=Image_New::select('image_1')->get();
             return response()->json($data);
-        }
-        else
-        {
-            $data['option']=Image_New::select('image_4')->get();
-            $data['support']='webp';
-            return response()->json($data);
-        }
+
+
 
 
    }
