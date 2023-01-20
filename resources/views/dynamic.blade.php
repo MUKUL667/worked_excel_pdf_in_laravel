@@ -21,54 +21,88 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="{{ asset('js/modernizr-custom.js') }}"></script>
 
 <script>
-   var domain='https://assets.techtonic.asia'
-  Modernizr.on('webp', function (result) {
-    $.ajax({
-      type: "get",
-      dataType: "json",
-      url: "dynamiccontent",
-      data: {
-          "_token": "{{ csrf_token() }}",
-      },
-      success: function(data) {
+  const domain='https://assets.techtonic.asia';
+  function support_format_webp()
+{
+ var elem = document.createElement('canvas');
 
-    if(result)
-    {
-      $.each(result.option, function(key, value) {
+ if (!!(elem.getContext && elem.getContext('2d')))
+ {
+  // was able or not to get WebP representation
+  return elem.toDataURL('image/webp').indexOf('data:image/webp') == 0;
+ }
+ else
+ {
+  // very old browser like IE 8, canvas not supported
+
+  return false;
+ }
+
+}
+$( window ).on("load", function() {
+var result;
+result=support_format_webp();
+if(result===true)
+{
+  $.ajax({
+    type: "get",
+    dataType: "json",
+    url: "dynamiccontent",
+    data: {
+        "_token": "{{ csrf_token() }}",
+    },
+    success: function(result) {
+                      $.each(result.option, function(key, value) {
 
 
-        $("#test").append('<div class="bhreveimg mx-2 my-2"><img src="'+domain+'/images/' +
-          value.image_4 +
-          '" ></img></div>  </div>'
-        );
+                        $("#test").append('<div class="bhreveimg mx-2 my-2"><img src="'+domain+'/images/' +
+                          value.image_4 +
+                          '" alt="'+domain+'/images/' +
+                          value.image_4 +
+                          '"> </div>  </div>'
+                  );
 
 
 
 
-})
+
+                })
+
     }
-    else{
-      $.each(result.option, function(key, value) {
-
-
-        $("#test").append('<div class="bhreveimg mx-2 my-2"><img src="'+domain+'/images/' +
-          value.image_1+
-          '" ></img></div>  </div>'
-        );
-
-
-
-
-})
-    }
-  }
   })
+}
+else{
+  $.ajax({
+    type: "get",
+    dataType: "json",
+    url: "dynamic_content",
+    data: {
+        "_token": "{{ csrf_token() }}",
+    },
+    success: function(result) {
+                      $.each(result.option, function(key, value) {
+
+
+                                    $("#test").append('<div class="bhreveimg mx-2 my-2"><img src="'+domain+'/images/' +
+                                            value.image_1 +
+                                            '" alt="'+domain+'/images/' +
+                                            value.image_1 +
+                                            '"> </div>  </div>'
+                                    );
+
+
+
+
+                })
+
+    }
+  })
+}
 });
+
+
 </script>
-
-
 
 </html>
