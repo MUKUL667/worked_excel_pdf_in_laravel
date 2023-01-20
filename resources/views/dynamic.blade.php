@@ -22,17 +22,51 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="{{ asset('js/modernizr-custom.js') }}"></script>
-<script src="{{ asset('js/modernizr-custom.js') }}"></script>
+
 <script>
+   var domain='https://assets.techtonic.asia'
   Modernizr.on('webp', function (result) {
+    $.ajax({
+      type: "get",
+      dataType: "json",
+      url: "dynamiccontent",
+      data: {
+          "_token": "{{ csrf_token() }}",
+      },
+      success: function(data) {
+
     if(result)
     {
-      console.log("webp support")
+      $.each(result.option, function(key, value) {
+
+
+        $("#test").append('<div class="bhreveimg mx-2 my-2"><img src="'+domain+'/images/' +
+          value.image_4 +
+          '" ></img></div>  </div>'
+        );
+
+
+
+
+})
     }
     else{
-      console.log("webp not support")
+      $.each(result.option, function(key, value) {
+
+
+        $("#test").append('<div class="bhreveimg mx-2 my-2"><img src="'+domain+'/images/' +
+          value.image_1+
+          '" ></img></div>  </div>'
+        );
+
+
+
+
+})
     }
+  }
   })
+});
 </script>
 
 
